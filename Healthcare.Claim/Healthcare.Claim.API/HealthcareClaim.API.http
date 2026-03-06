@@ -1,0 +1,7 @@
+@HealthcareClaim.API_HostAddress = http://localhost:5065
+
+POST {{HealthcareClaim.API_HostAddress}}/api/claims?patientId=GUID&amount=1000
+Accepts: application/json
+
+
+###

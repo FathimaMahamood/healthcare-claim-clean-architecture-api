@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36915.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Claim.API", "Healthcare.Claim.API\Healthcare.Claim.API.csproj", "{AC8FF50C-1C1A-4C0E-9A07-6A69459B9246}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthcareClaim.API", "Healthcare.Claim.API\HealthcareClaim.API.csproj", "{AC8FF50C-1C1A-4C0E-9A07-6A69459B9246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Claim.Application", "Healthcare.Claim.Application\Healthcare.Claim.Application.csproj", "{BC0AF0C2-8BF1-4B0B-9A8A-4FB169896DBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthcareClaim.Application", "Healthcare.Claim.Application\HealthcareClaim.Application.csproj", "{BC0AF0C2-8BF1-4B0B-9A8A-4FB169896DBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Claim.Domain", "Healthcare.Claim.Domain\Healthcare.Claim.Domain.csproj", "{4B84410C-9A94-4ACA-AB36-9032583731C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthcareClaim.Domain", "Healthcare.Claim.Domain\HealthcareClaim.Domain.csproj", "{4B84410C-9A94-4ACA-AB36-9032583731C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Claim.Infrastructure", "Healthcare.Claim.Infrastructure\Healthcare.Claim.Infrastructure.csproj", "{0204B712-A648-4B04-A2CF-945A1CBEBFB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthcareClaim.Infrastructure", "Healthcare.Claim.Infrastructure\HealthcareClaim.Infrastructure.csproj", "{0204B712-A648-4B04-A2CF-945A1CBEBFB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
