@@ -30,12 +30,20 @@ namespace HealthcareClaim.Infrastructure.Repositories
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<List<Patient>> GetPagedAsync(int pageNumber, int pageSize)
+        
+        public async Task<(List<Patient> Items, int TotalCount)> GetPagedAsync(int pageNumber, int pageSize)
         {
-            return await _context.Patients
+            var query = _context.Patients.AsQueryable();
+
+            var totalCount = await query.CountAsync();
+
+            var items = await query
+                .OrderByDescending(c => c.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
+            return (items, totalCount);
         }
         public async Task<int> CountAsync()
         {
@@ -49,6 +57,13 @@ namespace HealthcareClaim.Infrastructure.Repositories
         public async Task<Patient?> GetByIdWithInsuranceAsync(Guid id)
         {
             return await _context.Patients.Include(p => p.InsurancePolicy).FirstOrDefaultAsync(p => p.Id == id);
+        }
+        public async Task<Patient?> GetByPatientIdAsync(string PatientId)
+        {
+            int patientNumber = int.Parse(PatientId.Substring(2));
+
+            return await _context.Patients
+                .FirstOrDefaultAsync(p => p.PatientNumber == patientNumber);
         }
     }
 }

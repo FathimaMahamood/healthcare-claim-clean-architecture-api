@@ -13,7 +13,9 @@ namespace HealthcareClaim.Application.Interfaces
         Task<Patient?> GetByIdAsync(Guid id); 
         Task<Patient?> GetByIdWithInsuranceAsync(Guid id);
 
-        Task<List<Patient>> GetPagedAsync(int pageNumber, int pageSize);
+        Task<(List<Patient> Items, int TotalCount)> GetPagedAsync(int pageNumber, int pageSize);
+        Task<Patient?> GetByPatientIdAsync(string PatientId);
+
         Task<int> CountAsync();
         Task SaveChangesAsync();
     }

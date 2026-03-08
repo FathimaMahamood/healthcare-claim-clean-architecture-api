@@ -4,6 +4,7 @@ using HealthcareClaim.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthcareClaim.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260307164716_updatepatientEntity")]
+    partial class updatepatientEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +58,7 @@ namespace HealthcareClaim.Infrastructure.Migrations
 
                     b.HasIndex("ProviderId");
 
-                    b.ToTable("Claims", (string)null);
+                    b.ToTable("Claims");
                 });
 
             modelBuilder.Entity("HealthcareClaim.Domain.Entities.ClaimAttachment", b =>
@@ -86,7 +89,7 @@ namespace HealthcareClaim.Infrastructure.Migrations
 
                     b.HasIndex("ClaimId");
 
-                    b.ToTable("ClaimAttachments", (string)null);
+                    b.ToTable("ClaimAttachments");
                 });
 
             modelBuilder.Entity("HealthcareClaim.Domain.Entities.InsurancePolicy", b =>
@@ -125,7 +128,7 @@ namespace HealthcareClaim.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InsurancePolicies", (string)null);
+                    b.ToTable("InsurancePolicies");
                 });
 
             modelBuilder.Entity("HealthcareClaim.Domain.Entities.Patient", b =>
@@ -183,7 +186,7 @@ namespace HealthcareClaim.Infrastructure.Migrations
 
                     b.HasIndex("InsurancePolicyId");
 
-                    b.ToTable("Patients", (string)null);
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("HealthcareClaim.Domain.Entities.Provider", b =>
@@ -206,7 +209,7 @@ namespace HealthcareClaim.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Providers", (string)null);
+                    b.ToTable("Providers");
                 });
 
             modelBuilder.Entity("HealthcareClaim.Domain.Entities.Claim", b =>

@@ -21,6 +21,7 @@ namespace HealthcareClaim.Domain.Entities
         public DateTime DateOfBirth { get; private set; }
 
         public NationalityType NationalityType { get; private set; }
+        public GenderType GenderType { get; private set; }
         public string NationalIdNumber { get; private set; } = default!;
 
         public string PhoneNumber { get; private set; } = default!;
@@ -38,10 +39,10 @@ namespace HealthcareClaim.Domain.Entities
         private Patient() { } // EF
 
         public Patient(
-            int patientId,
             string fullName,
             DateTime dateOfBirth,
             NationalityType nationalityType,
+            GenderType genderType,
             string nationalIdNumber,
             string phoneNumber,
             string city,
@@ -57,6 +58,7 @@ namespace HealthcareClaim.Domain.Entities
             City = city;
             District = district;
             PostalCode = postalCode;
+            GenderType = genderType;
         }
 
         public void AssignInsurance(InsurancePolicy policy)

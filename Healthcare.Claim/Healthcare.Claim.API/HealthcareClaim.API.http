@@ -1,7 +1,24 @@
 @HealthcareClaim.API_HostAddress = http://localhost:5065
 
-POST {{HealthcareClaim.API_HostAddress}}/api/claims?patientId=GUID&amount=1000
+POST {{HealthcareClaim.API_HostAddress}}/api/Patients
+Content-Type: application/json
+{
+    "fullName": "Abdul Qaazi",
+    "dateOfBirth": "1987-05-15",
+    "nationalityType": 2,
+    "nationalIdNumber": "12345678901",
+    "phoneNumber": "+9665513455",
+    "city": "Makkah",
+    "district": "Jeddah",
+    "postalCode": "87652",
+    "genderType":1
+}
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/Patients/af6a64f4-32be-42d5-962f-65c63cbb06ff
 Accepts: application/json
 
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/Patients/paged?pageNumber=1&pageSize=10
 
 ###
+GET {{HealthcareClaim.API_HostAddress}}/api/Patients/by-patient-id/P-000003

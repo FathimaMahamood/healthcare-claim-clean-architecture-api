@@ -25,9 +25,20 @@ namespace HealthcareClaim.Infrastructure.Repositories
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<List<Provider>> GetAllAsync()
+        
+        public async Task<(List<Provider> Items, int TotalCount)> GetPagedAsync(int pageNumber, int pageSize)
         {
-            return await _context.Providers.ToListAsync();
+            var query = _context.Providers.AsQueryable();
+
+            var totalCount = await query.CountAsync();
+
+            var items = await query
+                .OrderByDescending(c => c.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (items, totalCount);
         }
 
         public async Task AddAsync(Provider provider)
