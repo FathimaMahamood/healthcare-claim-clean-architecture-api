@@ -15,15 +15,25 @@ The project demonstrates enterprise backend architecture concepts such as layere
 The project follows **Clean Architecture** with clear separation of responsibilities between layers.
 
 Client
+
 ↓
+
 API (Controllers)
+
 ↓
+
 Application (CQRS + MediatR)
+
 ↓
+
 Domain (Entities & Business Rules)
+
 ↓
+
 Infrastructure (EF Core Repositories)
+
 ↓
+
 Database
 
 ### Layers
@@ -89,13 +99,6 @@ The system models the following healthcare domain entities:
 - **InsurancePolicy**
 - **Claim**
 
-Relationships:
-Patient
-└── InsurancePolicy
-
-Claim
-├── Patient
-└── Provider
 
 ---
 
@@ -130,13 +133,21 @@ The AI service will analyze claim data and generate a risk score to help insuran
 Planned design:
 
 API
+
 ↓
+
 Claim Submitted
+
 ↓
+
 AI Risk Analysis Service (Python Microservice)
+
 ↓
+
 Risk Score Returned
+
 ↓
+
 Claim Review Decision
 
 The AI component will be implemented as a separate microservice communicating with the backend API.
