@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HealthcareClaim.Application.Features.Patients.Queries.GetPagedlPatient
+namespace HealthcareClaim.Application.Features.Patients.Queries.GetPagedPatient
 {
     
     public class GetPagedPatientQueryHandler

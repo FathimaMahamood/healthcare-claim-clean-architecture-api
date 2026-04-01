@@ -1,7 +1,7 @@
 ﻿
 using HealthcareClaim.Application.Features.Claims.Queries.GetPagedClaims;
 using HealthcareClaim.Application.Features.Patients.Commands.CreatePatient;
-using HealthcareClaim.Application.Features.Patients.Queries.GetPagedlPatient;
+using HealthcareClaim.Application.Features.Patients.Queries.GetPagedPatient;
 using HealthcareClaim.Application.Features.Patients.Queries.GetPatientById;
 using HealthcareClaim.Application.Features.Patients.Queries.GetPatientByPatientId;
 using HealthcareClaim.Application.Interfaces;

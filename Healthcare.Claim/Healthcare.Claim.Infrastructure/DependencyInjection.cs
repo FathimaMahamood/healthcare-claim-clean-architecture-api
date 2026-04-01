@@ -1,6 +1,7 @@
 ﻿using HealthcareClaim.Application.Interfaces;
 using HealthcareClaim.Infrastructure.Persistence;
 using HealthcareClaim.Infrastructure.Repositories;
+using HealthcareClaim.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,11 @@ namespace HealthcareClaim.Infrastructure
             services.AddScoped<IClaimRepository, ClaimRepository>();
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
+            services.AddScoped<IInsurancePolicyRepository, InsurancePolicyRepository>();
+            services.AddScoped<IClaimAttachmentRepository, ClaimAttachmentRepository>();
+            services.AddScoped<IFileStorageService, FileStorageService>();
+
+
 
             return services;
         }

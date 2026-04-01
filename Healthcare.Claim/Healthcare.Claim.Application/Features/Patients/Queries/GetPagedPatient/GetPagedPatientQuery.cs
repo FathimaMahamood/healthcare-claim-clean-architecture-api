@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HealthcareClaim.Application.Features.Patients.Queries.GetPagedlPatient
+namespace HealthcareClaim.Application.Features.Patients.Queries.GetPagedPatient
 {
 
      public record GetPagedPatientQuery(int PageNumber = 1, int PageSize = 10) : IRequest<PagedResult<PatientResponse>>;

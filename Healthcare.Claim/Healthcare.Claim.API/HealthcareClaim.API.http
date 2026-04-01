@@ -21,4 +21,71 @@ Accepts: application/json
 GET {{HealthcareClaim.API_HostAddress}}/api/Patients/paged?pageNumber=1&pageSize=10
 
 ###
-GET {{HealthcareClaim.API_HostAddress}}/api/Patients/by-patient-id/P-000003
+GET {{HealthcareClaim.API_HostAddress}}/api/Patients/by-patient-id/PPP-000003
+
+###
+POST {{HealthcareClaim.API_HostAddress}}/api/Providers
+Content-Type: application/json
+{
+    "Name": "TCS",
+    "LicenseNumber": "L10-AINC-2235238",
+    "City": "Riyadh"
+}
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/Providers/c5638f3a-befa-4e8f-a143-6160e6c34c6d
+Accepts: application/json
+
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/Providers/paged?pageNumber=1&pageSize=10
+###
+POST {{HealthcareClaim.API_HostAddress}}/api/Claims
+Content-Type: application/json
+{
+    "PatientId": "AF6A64F4-32BE-42D5-962F-65C63CBB06FF",
+    "ProviderId": "c5638f3a-befa-4e8f-a143-6160e6c34c6d",
+    "ClaimAmount": 50.00,
+    "Description": "Consultation"
+}
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/Claims/3904a64e-f044-4337-b7f7-0bc6fa4928b7
+Accepts: application/json
+
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/Claims/patient/af6a64f4-32be-42d5-962f-65c63cbb06ff
+Accepts: application/json
+
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/Claims/paged?pageNumber=1&pageSize=10
+
+###
+POST {{HealthcareClaim.API_HostAddress}}/api/auth/register?username=insadmin1&password=Insadmin@123&role=InsuranceAdmin
+
+
+###
+POST {{HealthcareClaim.API_HostAddress}}/api/auth/login?username=insadmin1&password=Insadmin@123
+
+
+###
+POST {{HealthcareClaim.API_HostAddress}}/api/auth/refresh?refreshToken=rNteOzeP/iBZz63ONwCyBcbrvqZYmo1tME3UTN4GliM=
+
+###
+POST {{HealthcareClaim.API_HostAddress}}/api/InsurancePolicies
+Content-Type: application/json
+{
+    "PatientId": "AF6A64F4-32BE-42D5-962F-65C63CBB06FF",
+    "ProviderId": "c5638f3a-befa-4e8f-a143-6160e6c34c6d",
+    "ClaimAmount": 50.00,
+    "InsuranceCompanyName":"BUPA",
+    "PolicyNumber":"2874678899387774",
+    "InsuranceType":1,
+    "CoverageLimit":100000,
+    "StartDate":"2025-12-01",
+    "ExpiryDate":"2026-12-01"
+}
+  
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/InsurancePolicies?pageNumber=1&pageSize=10
+
+###
+GET {{HealthcareClaim.API_HostAddress}}/api/InsurancePolicies/6a8187a7-f1b2-431a-a945-508699388ade
+
