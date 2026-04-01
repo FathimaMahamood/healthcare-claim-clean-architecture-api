@@ -2,82 +2,190 @@
 
 ## Overview
 
-Enterprise backend healthcare platform built using Clean Architecture principles.
+Backend healthcare claims processing platform built using **Clean Architecture** and **CQRS principles**.
 
-The system processes healthcare claim submissions, performs validation, and integrates with an AI-based risk analysis microservice.
+The system allows healthcare providers to submit insurance claims for patients, while insurance administrators can review, approve, or reject claims.
 
-The architecture is designed to be modular, scalable, and interview showcase ready.
+The project demonstrates enterprise backend architecture concepts such as layered architecture, domain-driven design, and command/query separation.
 
 ---
 
 ## Architecture
 
-The project follows modular Clean Architecture design.
+The project follows **Clean Architecture** with clear separation of responsibilities between layers.
 
-### Backend Design Principles
+Client
 
-- Modular monolith backend architecture
-- REST API principles
-- Authentication and authorization module
-- Claim processing workflow
-- Message queue based async processing (planned)
-- Python AI risk analyzer integration
+↓
 
-### Technology Stack
+API (Controllers)
 
-- ASP.NET Core Backend
-- Clean Architecture Pattern
-- Dependency Injection
-- Async Processing Workflow
-- Domain Driven Separation (conceptual level)
+↓
+
+Application (CQRS + MediatR)
+
+↓
+
+Domain (Entities & Business Rules)
+
+↓
+
+Infrastructure (EF Core Repositories)
+
+↓
+
+Database
+
+### Layers
+
+**API Layer**
+
+- ASP.NET Core Web API
+- Controllers
+- Request/Response handling
+
+**Application Layer**
+
+- CQRS Commands and Queries
+- MediatR handlers
+- DTOs
+- Repository interfaces
+**Domain Layer**
+
+- Core business entities
+- Business rules and domain logic
+
+**Infrastructure Layer**
+
+- Entity Framework Core
+- Database access
+- Repository implementations
+
+---
+
+## CQRS Pattern
+
+The system uses **Command Query Responsibility Segregation (CQRS)** to separate read and write operations.
+
+### Commands (Write Operations)
+
+Commands modify system state.
+
+Examples:
+
+- CreatePatientCommand
+- CreateClaimCommand
+- ApproveClaimCommand
+- RejectClaimCommand
+
+### Queries (Read Operations)
+
+Queries retrieve data without modifying system state.
+
+Examples:
+
+- GetPagedPatientsQuery
+- GetPatientByIdQuery
+- GetPatientByPatientIdQuery
+- GetPagedClaimsQuery
+
+---
+## Core Domain Entities
+
+The system models the following healthcare domain entities:
+
+- **Patient**
+- **Provider**
+- **InsurancePolicy**
+- **Claim**
+
 
 ---
 
 ## Features
 
-### Security
+### Patient Management
 
-- JWT Authentication
-- Role-based authorization (Provider, InsuranceAdmin)
+- Create patients
+- Retrieve patient by ID
+- Retrieve patient by patient number
+- Paginated patient listing
 
-### Healthcare Processing
+### Provider Management
 
-- Claim submission APIs
-- Claim validation workflow
-- Risk scoring analysis integration
+- Register healthcare providers
+- Provider lookup
 
-### System Design Components
+### Claim Processing
 
-- Middleware logging pipeline
-- Queue-based processing architecture
-- External AI service communication
+- Submit healthcare claims
+- Approve claims
+- Reject claims
+- Paginated claim listing
+
+---
+AI Risk Analysis (Planned)
+
+The platform is designed to integrate with an AI-based risk analysis service that evaluates healthcare claims before approval.
+
+The AI service will analyze claim data and generate a risk score to help insurance administrators identify potentially fraudulent or high-risk claims.
+
+Planned design:
+
+API
+
+↓
+
+Claim Submitted
+
+↓
+
+AI Risk Analysis Service (Python Microservice)
+
+↓
+
+Risk Score Returned
+
+↓
+
+Claim Review Decision
+
+The AI component will be implemented as a separate microservice communicating with the backend API.
+
+---
+
+## Technology Stack
+
+- ASP.NET Core Web API
+- Entity Framework Core
+- MediatR
+- Clean Architecture
+- CQRS Pattern
+- SQL Server
 
 ---
 
 ## Future Enhancements
 
-- Kubernetes container orchestration
-- Advanced NLP-based claim risk analysis
-- Distributed processing pipeline
-- Caching optimization strategies
-- Monitoring and telemetry integration
+Planned improvements for the platform:
 
----
-
-## Design Philosophy
-
-The system is built focusing on modular monolith backend architecture with the capability to evolve into microservices if required.
-
-The primary goal is to demonstrate strong backend engineering, architecture understanding, and AI integration awareness.
+- JWT Authentication and Role-based authorization
+- Claim document attachments
+- AI-based claim risk analysis service
+- Message queue based async claim processing
+- Distributed system evolution
 
 ---
 
 ## How to Run
 
-1. Clone the repository  
-2. Install latest .NET SDK  
-3. Open solution in Visual Studio or VS Code  
-4. Build and run Healthcare Claim API project  
+1. Clone the repository
+2. Install latest .NET SDK
+3. Open the solution
+4. Configure the database connection in appsettings.json
+5. Apply Entity Framework migrations
+6. Run the API project
+7. Access Swagger UI to test endpoints
 
 ---
 
@@ -85,21 +193,19 @@ The primary goal is to demonstrate strong backend engineering, architecture unde
 
 🚧 Under active development
 
-Main focus areas:
+Current focus:
 
-- Backend architecture implementation  
-- Authentication module  
-- Claim processing logic  
-- AI risk analysis service integration  
+- Claim workflow completion
+- Authentication module
 
 ---
 
 ## Author
 
-Fathima Mahamood K K 
-Focus: Clean Architecture Backend Systems and AI Service Integration
+Fathima Mahamood K K
 
----
+Backend engineering portfolio project focused on **Clean Architecture and scalable backend system design**.
+
 
 ## Notes
 
