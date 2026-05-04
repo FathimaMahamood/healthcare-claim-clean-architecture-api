@@ -33,6 +33,8 @@ namespace HealthcareClaim.Domain.Entities
         public List<ClaimAttachment> Attachments { get; private set; } = new ();
         public Guid ProviderId { get; private set; }
         public Provider Provider { get; private set; } = default!;
+        public int RiskScore { get; private set; }
+        public string RiskLevel { get; private set; } = default!;
 
         public void Approve()
         {
@@ -81,6 +83,12 @@ namespace HealthcareClaim.Domain.Entities
 
             Status = ClaimStatus.Rejected;
         }
+        public void SetRisk(int score, string level)
+        {
+            RiskScore = score;
+            RiskLevel = level;
+        }
+
 
     }
 

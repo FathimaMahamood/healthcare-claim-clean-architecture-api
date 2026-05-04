@@ -1,4 +1,5 @@
-﻿using HealthcareClaim.Application.Interfaces;
+﻿using HealthcareClaim.Application.Common;
+using HealthcareClaim.Application.Interfaces;
 using HealthcareClaim.Domain.Entities;
 using MediatR;
 using System;
@@ -13,14 +14,18 @@ namespace HealthcareClaim.Application.Features.Claims.Commands.CreateClaim
     : IRequestHandler<CreateClaimCommand, Guid>
     {
         private readonly IClaimRepository _claimRepository;
-        private readonly IPatientRepository _patientRepository; private readonly IProviderRepository _providerRepository;
+        private readonly IPatientRepository _patientRepository; 
+        private readonly IProviderRepository _providerRepository;
+        private readonly IAiRiskService _aiService;
 
 
-        public CreateClaimCommandHandler( IClaimRepository claimRepository, IPatientRepository patientRepository, IProviderRepository providerRepository)
+
+        public CreateClaimCommandHandler( IClaimRepository claimRepository, IPatientRepository patientRepository, IProviderRepository providerRepository, IAiRiskService aiService)
         {
             _claimRepository = claimRepository;
             _patientRepository = patientRepository;
             _providerRepository = providerRepository;
+            _aiService = aiService;
         }
 
         public async Task<Guid> Handle( CreateClaimCommand request, CancellationToken cancellationToken)
@@ -32,12 +37,25 @@ namespace HealthcareClaim.Application.Features.Claims.Commands.CreateClaim
 
             if (patient == null)
                 throw new Exception("Patient not found");
+            var today = DateTime.UtcNow;
+            var age = today.Year - patient.DateOfBirth.Year;
 
-            //// 2️⃣ Check insurance
+            if (patient.DateOfBirth.Date > today.AddYears(-age))
+                age--;
+
+            var riskResponse = await _aiService.AnalyzeAsync(new RiskRequest
+            {
+                ClaimAmount = request.ClaimAmount,
+                PatientAge = age,
+                HasInsurance = patient.InsurancePolicy != null
+            });
+            if (riskResponse == null)
+                throw new Exception("AI service failed");
+            // Check insurance
             //if (patient.InsurancePolicy == null)
             //    throw new Exception("Patient has no insurance policy");
 
-            //// 3️⃣ Check insurance limit
+            //Check insurance limit
             //if (patient.InsurancePolicy.RemainingLimit < request.ClaimAmount)
             //    throw new Exception("Insurance limit exceeded");
 
@@ -45,8 +63,10 @@ namespace HealthcareClaim.Application.Features.Claims.Commands.CreateClaim
 
             if (provider == null)
                 throw new Exception("Provider not found");
-            // 4️⃣ Create claim
+            //  Create claim
             var claim = new Claim( request.PatientId, request.ProviderId,  request.ClaimAmount,  request.Description );
+            
+            claim.SetRisk(riskResponse.RiskScore, riskResponse.RiskLevel);
 
             //patient.InsurancePolicy.UseAmount(request.ClaimAmount);
 

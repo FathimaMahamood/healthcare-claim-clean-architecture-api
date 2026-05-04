@@ -3,18 +3,18 @@
 POST {{HealthcareClaim.API_HostAddress}}/api/Patients
 Content-Type: application/json
 {
-    "fullName": "Abdul Qaazi",
-    "dateOfBirth": "1987-05-15",
-    "nationalityType": 2,
-    "nationalIdNumber": "12345678901",
-    "phoneNumber": "+9665513455",
+    "fullName": "Azeez Hameed",
+    "dateOfBirth": "1950-05-15",
+    "nationalityType": 1,
+    "nationalIdNumber": "12345323401",
+    "phoneNumber": "+966554553",
     "city": "Makkah",
     "district": "Jeddah",
     "postalCode": "87652",
     "genderType":1
 }
 ###
-GET {{HealthcareClaim.API_HostAddress}}/api/Patients/af6a64f4-32be-42d5-962f-65c63cbb06ff
+GET {{HealthcareClaim.API_HostAddress}}/api/Patients/6a38c1c8-f9b0-43b3-b961-3f55698a6690
 Accepts: application/json
 
 ###
@@ -41,10 +41,10 @@ GET {{HealthcareClaim.API_HostAddress}}/api/Providers/paged?pageNumber=1&pageSiz
 POST {{HealthcareClaim.API_HostAddress}}/api/Claims
 Content-Type: application/json
 {
-    "PatientId": "AF6A64F4-32BE-42D5-962F-65C63CBB06FF",
+    "PatientId": "e64a9a46-c353-45b9-a47c-c1a8599a57eb",
     "ProviderId": "c5638f3a-befa-4e8f-a143-6160e6c34c6d",
-    "ClaimAmount": 50.00,
-    "Description": "Consultation"
+    "ClaimAmount": 15000.00,
+    "Description": "Scan"
 }
 ###
 GET {{HealthcareClaim.API_HostAddress}}/api/Claims/3904a64e-f044-4337-b7f7-0bc6fa4928b7
